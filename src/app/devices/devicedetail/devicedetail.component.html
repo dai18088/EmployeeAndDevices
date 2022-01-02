@@ -1,0 +1,30 @@
+<div  class="row mt-5">
+    <div class="col">
+      
+      <div class="card-body">
+        <h4>{{mydevice.serialNumber}}</h4>
+        <h4>{{mydevice.description}}</h4>
+        <h4>{{mydevice.type}}</h4>
+      </div>
+
+      <p>{{mydevice.id}}</p>
+
+    </div>
+  
+</div>
+
+
+  <button [hidden]="toggledevice" class="btn btn-warning" (click)="toggledevice=!toggledevice">Edit Device</button>
+  <button class="btn btn-danger" (click)="delete()">Delete Device</button>
+<div class="row">
+  <div class="col">
+    <form *ngIf="toggledevice" [formGroup]="myformdevice" (ngSubmit)="editdevice(mydevice)">
+      <input class="form-control" type="text" name="serialNumber" placeholder="Serial Number" formControlName='serialNumber'>
+      <input  class="form-control" type="text" name="description" placeholder="Description" formControlName='description'>
+      <input  class="form-control" type="text" name="type" placeholder="Type" formControlName='type'>
+
+      <button class="btn btn-warning" type="submit">Edit Device</button>
+
+      </form>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div  class="row mt-5">
+  <div class="col">
+      
+    <div class="card-body">
+        <h2>{{myemployee.name}}</h2>
+        <h2>{{myemployee.email}}</h2>
+    </div>
+
+    <p>{{myemployee.id}}</p>
+
+  </div>
+  
+</div>
+
+
+<button [hidden]="toggle" class="btn btn-warning" (click)="toggle=!toggle">Edit Employee</button>
+<button class="btn btn-danger" (click)="delete()">Delete Employee</button>
+<div class="row">
+    <div class="col">
+      <form *ngIf="toggle" [formGroup]="myform" (ngSubmit)="editemployee(myemployee)">
+        <input class="form-control" type="text" name="name" placeholder="name" formControlName='name'>
+        <input  class="form-control" type="text" name="email" placeholder="email" formControlName='email'>
+
+        <div class="m-3 input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Device</span>
+          </div>
+          <select  class="form-control" name="Device">
+          <!--I put this in select and it gives an error-->
+          <!--#Device="ngModel" [(ngModel)]="employeemanagement.myform.Device"-->
+            <option *ngFor="let device of devices" [ngValue]="device.id">
+              {{device.description}}
+            </option>
+        </select>
+        </div>
+
+        <button class="btn btn-warning" type="submit">Edit Employee</button>
+
+      </form>
+  </div>
+</div>

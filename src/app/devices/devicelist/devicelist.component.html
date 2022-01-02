@@ -1,0 +1,25 @@
+<div  class="row mt-5">
+    <div *ngFor="let device of mydevices" class="card-header col-12" (click)="senddevice(device)">
+        
+      <h4>{{device.serialNumber}}</h4>
+      <h4>{{device.description}}</h4>
+      <h4>{{device.type}}</h4>
+      
+    </div>
+  
+</div>
+
+<button [hidden]="toggledevice" class="btn btn-primary" (click)="toggledevice=!toggledevice">Add Device</button>
+<div class="row">
+    <div class="col">
+        <form *ngIf="toggledevice" [formGroup]="myformdevice" (ngSubmit)="adddevice()">
+        <input class="form-control" type="text" name="serialNumber" placeholder="Serial Number" formControlName='serialNumber'>
+        <input  class="form-control" type="text" name="description" placeholder="Description" formControlName='description'>
+        <input  class="form-control" type="text" name="type" placeholder="Type" formControlName='type'>
+    
+
+        <button class="btn btn-primary" type="submit" [disabled]="!this.myformdevice.valid" >Submit Device</button>
+
+        </form>
+  </div>
+</div>

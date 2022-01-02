@@ -1,0 +1,36 @@
+<div  class="row mt-5">
+    <div *ngFor="let employee of myemployees" class="card-header col-12" (click)="sendemployee(employee)">
+        
+      <h4>{{employee.name}}</h4>
+      <h4>{{employee.email}}</h4>
+      
+    </div>
+  
+</div>
+
+<button [hidden]="toggle" class="btn btn-primary" (click)="toggle=!toggle">Add Employee</button>
+<div class="row">
+  <div class="col">
+    <form *ngIf="toggle" [formGroup]="myform" (ngSubmit)="addemployee()">
+      <input class="form-control" type="text" name="name" placeholder="Enter Name" formControlName="name">
+      <input  class="form-control" type="text" name="email" placeholder="Enter Email" formControlName="email">
+  
+      <div class="m-3 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Device</span>
+        </div>
+        <select  class="form-control" name="Device">
+        <!--I put this in select and it gives an error-->
+        <!--#Device="ngModel" [(ngModel)]="employeemanagement.myform.Device"-->
+          <option *ngFor="let device of devices" [ngValue]="device.id">
+            {{device.description}}
+          </option>
+      </select>
+      </div>
+
+
+      <button class="btn btn-primary" type="submit" [disabled]="!this.myform.valid" >Submit Employee</button>
+
+    </form>
+  </div>
+</div>
